@@ -1,1 +1,37 @@
-
+version: '3.8'
+ 
+services:
+  paymybuddy-db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: db_paymybuddy
+    ports:
+      - "3306:3306"
+    volumes:
+      - paymybuddy-db-data:/var/lib/mysql
+      - ./initdb:/docker-entrypoint-initdb.d  # Montage du dossier initdb contenant create.sql
+    networks:
+      - paymybuddy-network
+ 
+  paymybuddy-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_DATASOURCE_URL: jdbc:mysql://paymybuddy-db:3306/db_paymybuddy # Connexion via le nom du service
+    ports:
+      - "8080:8080"
+    depends_on:
+      - paymybuddy-db
+    networks:
+      - paymybuddy-network
+ 
+volumes:
+  paymybuddy-db-data: {}
+ 
+networks:
+  paymybuddy-network:
+    driver: bridge
