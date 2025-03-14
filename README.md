@@ -3,9 +3,7 @@ Architecture du projet
 projet-esgi/
 
 ├── Dockerfile
-
 ├── docker-compose.yml
-
 ├── paymybuddy.jar
 
 ├── initdb/
