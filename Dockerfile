@@ -1,5 +1,5 @@
 # Utiliser une image de base d'Amazon Corretto avec Java 17
-FROM amazoncorretto:17-alpine
+FROM amazoncorretto:21-alpine
 
 # Définir un répertoire de travail pour recevoir le fichier JAR
 WORKDIR /app
