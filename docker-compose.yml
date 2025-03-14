@@ -1,7 +1,7 @@
 services:
   paymybuddy-backend:
     build: .
-    image: ramdom7/paymybuddy-backend:latest
+    image: Adam2696/paymybuddy-backend:latest
     container_name: paymybuddy-backend
     ports:
       - "8080:8080"
