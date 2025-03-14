@@ -1,21 +1,37 @@
 Architecture du projet
 
 projet-esgi/
+
 ├── Dockerfile
+
 ├── docker-compose.yml
+
 ├── paymybuddy.jar
+
 ├── initdb/
+
 │   └── (vos scripts SQL d'initialisation)
+
 ├── kubernetes/
+
 │   ├── backend-deployment.yaml
+
 │   ├── backend-service.yaml
+
 │   ├── mysql-deployment.yaml
+
 │   ├── mysql-service.yaml
+
 │   ├── mysql-pvc.yaml
+
 │   ├── mysql-configmap.yaml
+
 │   ├── mysql-secret.yaml
+
 │   └── mysql-init-configmap.yaml
+
 └── README.md
+
 
 ## Dockerfile
 Ce fichier définit comment construire le conteneur pour l'application Spring Boot. Le système utilise Java 17 sur une image Alpine légère, place l'application dans un répertoire de travail dédié, configure les paramètres de connexion à la base de données et lance l'application au démarrage du conteneur.
