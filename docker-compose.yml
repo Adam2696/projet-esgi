@@ -1,5 +1,5 @@
 version: '3.8'
- 
+
 services:
   paymybuddy-db:
     image: mysql:8.0
@@ -10,10 +10,10 @@ services:
       - "3306:3306"
     volumes:
       - paymybuddy-db-data:/var/lib/mysql
-      - ./initdb:/docker-entrypoint-initdb.d  # Montage du dossier initdb contenant create.sql
+      - ./initdb:/docker-entrypoint-initdb.d:ro  # Montage en lecture seule des fichiers de création
     networks:
       - paymybuddy-network
- 
+
   paymybuddy-backend:
     build:
       context: .
@@ -28,10 +28,11 @@ services:
       - paymybuddy-db
     networks:
       - paymybuddy-network
- 
+
 volumes:
-  paymybuddy-db-data: {}
- 
+  paymybuddy-db-data:
+    driver: local  # Persistance des données de la base de données MySQL
+
 networks:
   paymybuddy-network:
     driver: bridge
